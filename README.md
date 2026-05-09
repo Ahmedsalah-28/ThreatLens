@@ -64,7 +64,7 @@ input ──┬──► hash ──► vt ──┬──► static ──┐
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/ThreatLens.git
+git clone https://github.com/Ahmedsalah-28/ThreatLens.git
 cd ThreatLens
 ```
 
