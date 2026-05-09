@@ -527,7 +527,7 @@ STEPS = [
 st.markdown("""
 <div class="hero-wrap" >
     <div class="hero-tag">Threat Intelligence Platform</div>
-    <div class="hero-title">MALWARE<br>SCOPE</div>
+    <div class="hero-title">ThreatLens<br> </div>
     <p class="hero-sub" style="margin-left: 525px;">
         Drop a binary. Get full static, dynamic, YARA, and AI-synthesized<br>
         threat intelligence — automated end-to-end.
