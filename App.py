@@ -6,7 +6,7 @@ from pathlib import Path
 
 # ── Page config ────────────────────────────────────────────
 st.set_page_config(
-    page_title="MalwareScope",
+    page_title="ThreatLens",
     page_icon="🛡",
     layout="wide",
     initial_sidebar_state="collapsed",
