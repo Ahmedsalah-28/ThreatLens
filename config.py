@@ -1,0 +1,4 @@
+GROQ_API_KEY = "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"
+VT_API_KEY   = "e32ac7aac1a45c0b46f96dbb8a39e98f727dd9544d6a6419325bd2e3d4c2c215"
+GROQ_MODEL   = "llama-3.3-70b-versatile"
+YARA_RULES_PATH = "rules"
