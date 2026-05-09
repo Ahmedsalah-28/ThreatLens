@@ -1,6 +1,6 @@
 # 🛡 ThreatLens
 
-> Automated malware threat intelligence pipeline — static, dynamic, YARA & AI-synthesized analysis powered by LangGraph + Groq.
+> ThreatLens — Automated Malware Intelligence Pipeline. Upload a binary, get a full threat report: SHA256, UPX packing detection, FLOSS string extraction, VirusTotal lookup, static PE analysis, dynamic sandbox results, YARA rule matching, and an AI-synthesized threat intelligence report — all in one click, powered by LangGraph + Groq.
 
 ---
 
