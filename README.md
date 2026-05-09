@@ -1,16 +1,19 @@
-# Malware Analysis Pipeline
+# 🛡 ThreatLens
 
-Automated malware threat intelligence pipeline built with LangGraph + Groq.
+> Automated malware threat intelligence pipeline — static, dynamic, YARA & AI-synthesized analysis powered by LangGraph + Groq.
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
-malware_pipeline/
+ThreatLens/
 │
+├── app.py                         # Streamlit web interface
 ├── config.py                      # API keys & shared constants
 ├── state.py                       # GraphState TypedDict
 ├── graph.py                       # Graph builder & compiler
-├── main.py                        # Entry point
+├── main.py                        # CLI entry point
 ├── requirements.txt
 │
 ├── nodes/
@@ -30,7 +33,7 @@ malware_pipeline/
 │   ├── llm.py                     # Groq client + call_llm()
 │   └── yara_loader.py             # YARA rules loader
 │
-├── rules/                         # YARA rule files
+├── rules/                         # YARA rule files (see setup below)
 │   ├── malware/
 │   ├── packers/
 │   └── webshells/
@@ -42,7 +45,9 @@ malware_pipeline/
     └── full_report.html
 ```
 
-## Pipeline Flow
+---
+
+## ⚙️ Pipeline Flow
 
 ```
 input ──┬──► hash ──► vt ──┬──► static ──┐
@@ -52,16 +57,97 @@ input ──┬──► hash ──► vt ──┬──► static ──┐
         └──► yara ───────────────────────┘         └──────────► render_report_html
 ```
 
-## Usage
+---
+
+## 🚀 Installation & Setup
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/ThreatLens.git
+cd ThreatLens
+```
+
+### 2. Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+### 3. Install external tools
+
+- **UPX** — download from https://upx.github.io and add to PATH
+- **FLOSS** — download `floss64.exe` from https://github.com/mandiant/flare-floss/releases and place it in the project root or add to PATH
+
+### 4. Download YARA Rules
+
+The pipeline uses community YARA rules. Clone them into the `rules/` folder:
+
+```bash
+git clone https://github.com/Yara-Rules/rules.git rules
+```
+
+> Repo: https://github.com/Yara-Rules/rules
+
+After cloning, the `rules/` folder should contain at minimum:
+
+```
+rules/
+├── malware/
+├── packers/
+└── webshells/
+```
+
+### 5. Configure API keys
+
+Edit `config.py` and fill in your keys:
+
+```python
+GROQ_API_KEY    = "your_groq_api_key"
+VT_API_KEY      = "your_virustotal_api_key"
+YARA_RULES_PATH = "rules"
+```
+
+- **Groq API key** → https://console.groq.com
+- **VirusTotal API key** → https://www.virustotal.com/gui/my-apikey
+
+---
+
+## ▶️ Usage
+
+### Run the Streamlit web interface
+
+```bash
+streamlit run app.py
+```
+
+Then open your browser at `http://localhost:8501`, upload a binary, and click **Run Analysis**.
+
+### Run from CLI
+
+```bash
 python main.py
 ```
 
-## Config
+> Edit the `file_path` inside `main.py` to point to your sample.
 
-Edit `config.py` to update API keys:
-- `GROQ_API_KEY` — Groq API key
-- `VT_API_KEY`   — VirusTotal API key
-- `YARA_RULES_PATH` — path to YARA rules folder
+---
+
+## 📊 Output Reports
+
+After analysis, two HTML reports are generated inside `outputs/`:
+
+| File | Description |
+|---|---|
+| `summary_report.html` | AI-generated premium interactive dashboard |
+| `full_report.html` | Full technical report with all module results |
+| `insights_report.md` | Raw markdown threat intelligence report |
+| `analysis.json` | Aggregated raw data from all modules |
+
+---
+
+## ⚠️ Disclaimer
+
+This tool is intended for **educational and research purposes only**.  
+Always analyze malware in an **isolated environment** (VM / sandbox).  
+Never run suspicious binaries on your host machine.
